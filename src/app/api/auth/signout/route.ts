@@ -1,8 +1,7 @@
-import { createHash } from "node:crypto";
 import { jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
+import { redis } from "@/lib/redis";
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 
@@ -11,39 +10,14 @@ export async function POST(_request: NextRequest) {
     const cookieStore = cookies();
     const refreshToken = (await cookieStore).get("refresh_token")?.value;
 
-    if (!refreshToken) return NextResponse.json({ ok: true }, { status: 200 });
+    if (refreshToken) {
+      const { payload } = await jwtVerify(refreshToken, JWT_SECRET);
+      const jti = payload.jti;
+      await redis.del(`refresh:${jti}`);
+    }
 
-    const { payload } = await jwtVerify(refreshToken, JWT_SECRET);
-    const jti = payload.jti;
-
-    if (!jti) return NextResponse.json({ ok: true }, { status: 200 });
-
-    const hashedRefreshToken = createHash("sha256")
-      .update(refreshToken)
-      .digest("hex");
-
-    await prisma.refreshToken.deleteMany({
-      where: {
-        jti,
-        token: hashedRefreshToken,
-      },
-    });
-
-    (await cookieStore).set("access_token", "", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      path: "/",
-      maxAge: 0,
-    });
-
-    (await cookieStore).set("refresh_token", "", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      path: "/",
-      maxAge: 0,
-    });
+    (await cookieStore).set("access_token", "", { maxAge: 0, path: "/" });
+    (await cookieStore).set("refresh_token", "", { maxAge: 0, path: "/" });
 
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (error) {

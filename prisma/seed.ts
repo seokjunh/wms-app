@@ -9,7 +9,7 @@ export async function main() {
   });
 
   if (!admin) {
-    const hashedPassword = await bcrypt.hash("admin", 10);
+    const hashedPassword = await bcrypt.hash("rhistle1!", 10);
 
     await prisma.user.create({
       data: {
@@ -19,7 +19,7 @@ export async function main() {
       },
     });
 
-    console.log("Admin account created (admin/admin)");
+    console.log("관리자 계정 생성, ID: admin");
   }
 }
 

@@ -71,7 +71,6 @@ const SignInForm = () => {
           <FieldLabel htmlFor="username">아이디</FieldLabel>
           <Input id="username" name="username" type="text" required />
         </Field>
-        {error && <p className="text-red-500">{error}</p>}
 
         <Field>
           <FieldLabel htmlFor="password">비밀번호</FieldLabel>
@@ -99,7 +98,6 @@ const SignInForm = () => {
             </Button>
           </div>
         </Field>
-        {error && <p className="text-red-500">{error}</p>}
 
         <Field>
           <Button type="submit" disabled={loading}>
@@ -114,6 +112,7 @@ const SignInForm = () => {
           </Button>
         </Field>
       </FieldGroup>
+      {error && <p className="text-red-500">{error}</p>}
     </form>
   );
 };

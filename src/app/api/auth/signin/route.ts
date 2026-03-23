@@ -1,23 +1,23 @@
-import { createHash, randomUUID } from "node:crypto";
+import { randomUUID } from "node:crypto";
 import { compare } from "bcrypt";
 import { SignJWT } from "jose";
 import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { redis } from "@/lib/redis";
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 
 export async function POST(request: NextRequest) {
   try {
     const { username, password } = await request.json();
-
     const user = await prisma.user.findUnique({
       where: { username },
     });
 
     if (!user || !user.isActive)
       return NextResponse.json(
-        { error: "Invalid credentials" },
+        { error: "아이디 또는 비밀번호가 올바르지 않습니다." },
         { status: 401 },
       );
 
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
     if (!valid)
       return NextResponse.json(
-        { error: "Invalid credentials" },
+        { error: "아이디 또는 비밀번호가 올바르지 않습니다." },
         { status: 401 },
       );
 
@@ -40,7 +40,6 @@ export async function POST(request: NextRequest) {
       .sign(JWT_SECRET);
 
     const jti = randomUUID();
-
     const refreshToken = await new SignJWT({
       userId: user.id,
       jti,
@@ -50,21 +49,7 @@ export async function POST(request: NextRequest) {
       .setExpirationTime("7d")
       .sign(JWT_SECRET);
 
-    const hashedRefreshToken = createHash("sha256")
-      .update(refreshToken)
-      .digest("hex");
-
-    const expiresAt = new Date();
-    expiresAt.setDate(expiresAt.getDate() + 7);
-
-    await prisma.refreshToken.create({
-      data: {
-        token: hashedRefreshToken,
-        userId: user.id,
-        jti,
-        expiresAt,
-      },
-    });
+    await redis.set(`refresh:${jti}`, user.id, { EX: 60 * 60 * 24 * 7 });
 
     const cookieStore = cookies();
 
