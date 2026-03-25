@@ -1,26 +1,31 @@
 import { jwtVerify } from "jose";
 import { type NextRequest, NextResponse } from "next/server";
 
-export async function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+const jwtSecret = new TextEncoder().encode(process.env.JWT_SECRET);
+const publicRoutes = ["/sign-in"];
 
-  const token = request.cookies.get("access_token")?.value;
+export async function proxy(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+  const refreshToken = req.cookies.get("refresh_token")?.value;
+  const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route));
 
-  if (pathname === "/sign-in") {
-    if (token) return NextResponse.redirect(new URL("/", request.url));
-    return NextResponse.next();
+  if (!refreshToken) {
+    if (isPublicRoute) return NextResponse.next();
+    return NextResponse.redirect(new URL("/sign-in", req.url));
   }
 
-  if (!token) return NextResponse.redirect(new URL("/sign-in", request.url));
-
   try {
-    const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
-    await jwtVerify(token, JWT_SECRET);
+    await jwtVerify(refreshToken, jwtSecret);
+
+    if (isPublicRoute) return NextResponse.redirect(new URL("/", req.url));
 
     return NextResponse.next();
   } catch (error) {
-    console.log("JWT 검증 실패:", error);
-    return NextResponse.redirect(new URL("/sign-in", request.url));
+    console.log("Refresh Token 검증 실패:", error);
+
+    const res = NextResponse.redirect(new URL("/sign-in", req.url));
+    res.cookies.delete("refreshToken");
+    return res;
   }
 }
 

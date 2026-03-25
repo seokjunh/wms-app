@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
+import { useSilentRefresh } from "@/hooks/useSilentRefresh";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -21,12 +22,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useSilentRefresh();
+
   return (
-    <html
-      lang="ko"
-      className={cn("antialiased", pretendard.variable)}
-      suppressHydrationWarning
-    >
+    <html lang="ko" className={cn("antialiased", pretendard.variable)} suppressHydrationWarning>
       <body>
         <ThemeProvider
           attribute="class"

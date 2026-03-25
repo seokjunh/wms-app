@@ -7,6 +7,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { useAuthStore } from "@/stores/auth";
 import { Spinner } from "./ui/spinner";
 
 const schema = z.object({
@@ -19,6 +20,7 @@ const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { setAccessToken } = useAuthStore();
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -49,11 +51,14 @@ const SignInForm = () => {
         credentials: "include",
       });
 
+      const data = await res.json();
+
       if (!res.ok) {
-        const data = await res.json();
         setError(data.error || "로그인 실패");
         return;
       }
+
+      setAccessToken(data.accessToken)
 
       router.push("/");
     } catch (e) {
