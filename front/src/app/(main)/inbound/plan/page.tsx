@@ -1,4 +1,7 @@
+import DataTable from "@/components/DataTable";
+import data from "./data.json";
+
 const page = () => {
-  return <div>입고예정</div>;
+  return <DataTable data={data} />;
 };
 export default page;

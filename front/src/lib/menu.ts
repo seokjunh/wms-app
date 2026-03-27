@@ -61,7 +61,76 @@ export const menu = [
     ],
   },
   {
-    title: "통계",
+    title: "통계1",
+    icon: SquareKanban,
+    isActive: false,
+    items: [
+      {
+        title: "Introduction",
+        url: "/",
+      },
+      {
+        title: "Get Started",
+        url: "/",
+      },
+      {
+        title: "Tutorials",
+        url: "/",
+      },
+      {
+        title: "Changelog",
+        url: "/",
+      },
+    ],
+  },
+  {
+    title: "통계2",
+    icon: SquareKanban,
+    isActive: false,
+    items: [
+      {
+        title: "Introduction",
+        url: "/",
+      },
+      {
+        title: "Get Started",
+        url: "/",
+      },
+      {
+        title: "Tutorials",
+        url: "/",
+      },
+      {
+        title: "Changelog",
+        url: "/",
+      },
+    ],
+  },
+  {
+    title: "통계3",
+    icon: SquareKanban,
+    isActive: false,
+    items: [
+      {
+        title: "Introduction",
+        url: "/",
+      },
+      {
+        title: "Get Started",
+        url: "/",
+      },
+      {
+        title: "Tutorials",
+        url: "/",
+      },
+      {
+        title: "Changelog",
+        url: "/",
+      },
+    ],
+  },
+  {
+    title: "통계4",
     icon: SquareKanban,
     isActive: false,
     items: [

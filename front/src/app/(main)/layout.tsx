@@ -11,12 +11,10 @@ export default function MainLayout({
   return (
     <TooltipProvider>
       <SidebarProvider>
-        <AppSidebar variant="inset" />
+        <AppSidebar />
         <SidebarInset>
-          <main>
-            <Header />
-            {children}
-          </main>
+          <Header />
+          {children}
         </SidebarInset>
       </SidebarProvider>
     </TooltipProvider>
