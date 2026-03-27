@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useAuthStore } from "@/stores/auth";
 
-export const useSilentRefresh = () => {
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { accessToken, setAccessToken } = useAuthStore();
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export const useSilentRefresh = () => {
       if (accessToken) return;
 
       try {
-        const res = await fetch("/api/auth/refresh", {
+        const res = await fetch("http://localhost:3001/api/auth/refresh", {
           method: "POST",
           credentials: "include",
         });
@@ -27,4 +27,7 @@ export const useSilentRefresh = () => {
 
     refreshToken();
   }, [setAccessToken, accessToken]);
+
+  return <div>{children}</div>;
 };
+export default AuthProvider;

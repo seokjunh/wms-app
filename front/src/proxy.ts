@@ -1,12 +1,12 @@
 import { jwtVerify } from "jose";
 import { type NextRequest, NextResponse } from "next/server";
 
-const jwtSecret = new TextEncoder().encode(process.env.JWT_SECRET);
+const jwtRefreshSecret = new TextEncoder().encode(process.env.JWT_REFRESH_SECRET);
 const publicRoutes = ["/sign-in"];
 
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  const refreshToken = req.cookies.get("refresh_token")?.value;
+  const refreshToken = req.cookies.get("refreshToken")?.value;
   const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route));
 
   if (!refreshToken) {
@@ -15,7 +15,7 @@ export async function proxy(req: NextRequest) {
   }
 
   try {
-    await jwtVerify(refreshToken, jwtSecret);
+    await jwtVerify(refreshToken, jwtRefreshSecret);
 
     if (isPublicRoute) return NextResponse.redirect(new URL("/", req.url));
 

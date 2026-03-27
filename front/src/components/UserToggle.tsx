@@ -18,11 +18,12 @@ const UserToggle = () => {
 
   const handleSignOut = async () => {
     try {
-      await fetch("/api/auth/signout", {
+      await fetch("http://localhost:3001/api/auth/signout", {
         method: "POST",
         credentials: "include",
       });
-      router.push("/");
+
+      router.refresh();
     } catch (error) {
       console.error("로그아웃 에러:", error);
     }

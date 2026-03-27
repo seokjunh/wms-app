@@ -11,8 +11,8 @@ import { useAuthStore } from "@/stores/auth";
 import { Spinner } from "./ui/spinner";
 
 const schema = z.object({
-  username: z.string().min(1, { message: "아이디를 입력해주세요." }),
-  password: z.string().min(1, { message: "비밀번호를 입력해주세요." }),
+  username: z.string(),
+  password: z.string(),
 });
 
 const SignInForm = () => {
@@ -44,7 +44,7 @@ const SignInForm = () => {
     const { username, password } = validate.data;
 
     try {
-      const res = await fetch("/api/auth/signin", {
+      const res = await fetch("http://localhost:3001/api/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -54,13 +54,13 @@ const SignInForm = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "로그인 실패");
+        setError(data.message);
         return;
       }
 
-      setAccessToken(data.accessToken)
+      setAccessToken(data.accessToken);
 
-      router.push("/");
+      router.refresh();
     } catch (e) {
       console.error(e);
       setError("로그인 중 오류가 발생했습니다.");
