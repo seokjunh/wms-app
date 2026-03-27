@@ -1,25 +1,32 @@
-import bcrypt from "bcrypt";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { hash } from "bcrypt";
+import { PrismaClient } from "../src/generated/prisma/client.js";
 
-export async function main() {
-  const admin = await this.prisma.user.findUnique({
-    where: {
+const prisma = new PrismaClient({
+  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+});
+
+async function main() {
+  const hashedPassword = await hash("1234", 10);
+
+  await prisma.user.upsert({
+    where: { username: "admin" },
+    update: {}, // 이미 있으면 업데이트 안 함
+    create: {
       username: "admin",
+      password: hashedPassword,
+      role: "ADMIN",
     },
   });
 
-  if (!admin) {
-    const hashedPassword = await bcrypt.hash("rhistle1!", 10);
-
-    await this.prisma.user.create({
-      data: {
-        username: "admin",
-        password: hashedPassword,
-        role: "ADMIN",
-      },
-    });
-
-    console.log("관리자 계정 생성, ID: admin");
-  }
+  console.log("관리자 계정이 생성되었습니다.");
 }
 
-main();
+try {
+  await main();
+  await prisma.$disconnect();
+} catch (error) {
+  console.error(error);
+  await prisma.$disconnect();
+  process.exit(1);
+}

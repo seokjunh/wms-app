@@ -1,16 +1,21 @@
 import { Global, Inject, Module, OnModuleDestroy } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import { Redis } from "ioredis";
+
+export const REDIS_CLIENT = "REDIS_CLIENT";
 
 @Global()
 @Module({
+  imports: [ConfigModule],
   providers: [
     {
-      provide: "REDIS_CLIENT",
-      useFactory: () => {
+      provide: REDIS_CLIENT,
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
         const client = new Redis({
-          host: process.env.REDIS_HOST || "localhost",
-          port: Number(process.env.REDIS_PORT) || 6379,
-          password: process.env.REDIS_PASSWORD,
+          host: configService.get("REDIS_HOST", "localhost"),
+          port: configService.get("REDIS_PORT", 6379),
+          password: configService.get("REDIS_PASSWORD"),
         });
 
         client.on("error", (err) => console.error("Redis Error", err));
@@ -20,12 +25,12 @@ import { Redis } from "ioredis";
       },
     },
   ],
-  exports: ["REDIS_CLIENT"],
+  exports: [REDIS_CLIENT],
 })
 export class RedisModule implements OnModuleDestroy {
-  constructor(@Inject("REDIS_CLIENT") private readonly redisClient: Redis) {}
+  constructor(@Inject(REDIS_CLIENT) private readonly redisClient: Redis) {}
 
-  onModuleDestroy() {
-    this.redisClient.disconnect();
+  async onModuleDestroy() {
+    await this.redisClient.quit();
   }
 }

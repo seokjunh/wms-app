@@ -1,7 +1,7 @@
 import { Body, Controller, Post, Req, Res, UnauthorizedException } from "@nestjs/common";
 import type { Request, Response } from "express";
-import { AuthService } from "./auth.service";
-import { SigninDto } from "./dto/signin.dto";
+import { AuthService } from "./auth.service.js";
+import { SigninDto } from "./dto/signin.dto.js";
 
 @Controller("auth")
 export class AuthController {
@@ -46,7 +46,7 @@ export class AuthController {
     if (!oldRefreshToken) throw new UnauthorizedException("로그인이 필요합니다.");
 
     const { accessToken, refreshToken } = await this.authService.refresh(oldRefreshToken);
-    
+
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
