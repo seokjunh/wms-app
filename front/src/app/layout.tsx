@@ -3,7 +3,6 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import AuthProvider from "@/components/AuthProvider";
-import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -34,7 +33,6 @@ export default function RootLayout({
         >
           <AuthProvider>{children}</AuthProvider>
         </ThemeProvider>
-        <Toaster />
       </body>
     </html>
   );
