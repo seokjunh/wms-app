@@ -173,6 +173,7 @@
     HeaderRow,
     SummaryRow,
     GroupedRow,
+    TextEditor,
     Root;
 }
 
@@ -347,6 +348,35 @@
     > .rdg-7-0-0-beta-58-85c48527:not(:last-child, .rdg-7-0-0-beta-58-17a9a6d4),
     > :nth-last-child(n + 2 of .rdg-7-0-0-beta-58-17a9a6d4) {
       border-inline-end: none;
+    }
+  }
+}
+
+@layer rdg.TextEditor {
+  .rdg-text-editor {
+    appearance: none;
+
+    box-sizing: border-box;
+    inline-size: 100%;
+    block-size: 100%;
+    padding-block: 0;
+    padding-inline: 6px;
+    border: 2px solid #ccc;
+    vertical-align: top;
+    color: var(--rdg-color);
+    background-color: var(--rdg-background-color);
+
+    font-family: inherit;
+    font-size: var(--rdg-font-size);
+
+    &:focus {
+      border-color: var(--rdg-selection-color);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: #999;
+      opacity: 1;
     }
   }
 }

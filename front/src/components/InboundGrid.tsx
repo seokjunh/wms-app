@@ -1,16 +1,30 @@
 "use client";
 
-import { DataGrid } from "react-data-grid";
+import { useState } from "react";
+import {
+  type CellMouseArgs,
+  type CellMouseEvent,
+  DataGrid,
+  renderTextEditor,
+} from "react-data-grid";
+
+type Row = Record<string, string | number>;
 
 const columns = [
-  { key: "idx", name: "", width: 50, minWidth: 50 },
+  {
+    key: "idx",
+    name: "",
+    width: 50,
+    minWidth: 50,
+    resizable: false,
+  },
   ...Array.from({ length: 26 }, (_, i) => {
     const key = String.fromCharCode(65 + i);
-    return { key, name: key };
+    return { key, name: key, renderEditCell: renderTextEditor };
   }),
 ];
 
-const rows = Array.from({ length: 1000 }, (_, i) => {
+const initRows = Array.from({ length: 100 }, (_, i) => {
   const row: Record<string, string | number> = {
     idx: i + 1,
   };
@@ -23,6 +37,15 @@ const rows = Array.from({ length: 1000 }, (_, i) => {
 });
 
 const InboundGrid = () => {
+  const [rows, setRows] = useState(initRows);
+  const [_selectedCells, _setSelectedCells] = useState<{ row: number; col: string }[]>([]);
+
+  function onCellClick(args: CellMouseArgs<Row>, event: CellMouseEvent) {
+    event.preventGridDefault();
+
+    console.log(args.column.key, args.rowIdx);
+  }
+
   return (
     <DataGrid
       columns={columns}
@@ -30,9 +53,9 @@ const InboundGrid = () => {
       defaultColumnOptions={{
         minWidth: 100,
         resizable: true,
-        sortable: true,
-        draggable: true,
       }}
+      onRowsChange={setRows}
+      onCellClick={onCellClick}
     />
   );
 };
