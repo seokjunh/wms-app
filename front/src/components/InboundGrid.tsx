@@ -17,6 +17,7 @@ const columns = [
     width: 50,
     minWidth: 50,
     resizable: false,
+    frozen: true,
   },
   ...Array.from({ length: 26 }, (_, i) => {
     const key = String.fromCharCode(65 + i);
@@ -25,12 +26,14 @@ const columns = [
 ];
 
 const initRows = Array.from({ length: 100 }, (_, i) => {
-  const row: Record<string, string | number> = {
-    idx: i + 1,
-  };
+  const row: Row = {};
 
   columns.forEach((col) => {
-    if (col.key !== "idx") row[col.key] = "";
+    if (col.key === "idx") {
+      row.idx = i + 1;
+    } else {
+      row[col.key] = "";
+    }
   });
 
   return row;
@@ -38,24 +41,22 @@ const initRows = Array.from({ length: 100 }, (_, i) => {
 
 const InboundGrid = () => {
   const [rows, setRows] = useState(initRows);
-  const [_selectedCells, _setSelectedCells] = useState<{ row: number; col: string }[]>([]);
 
-  function onCellClick(args: CellMouseArgs<Row>, event: CellMouseEvent) {
+  const _onCellClick = (args: CellMouseArgs<Row>, event: CellMouseEvent) => {
     event.preventGridDefault();
-
-    console.log(args.column.key, args.rowIdx);
-  }
+    console.log(args.row.idx, args.column.key);
+  };
 
   return (
     <DataGrid
       columns={columns}
       rows={rows}
+      rowHeight={30}
+      onRowsChange={setRows}
       defaultColumnOptions={{
         minWidth: 100,
         resizable: true,
       }}
-      onRowsChange={setRows}
-      onCellClick={onCellClick}
     />
   );
 };

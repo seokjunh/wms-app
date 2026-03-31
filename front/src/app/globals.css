@@ -241,6 +241,7 @@
     position: sticky;
     /* Should have a higher value than 0 to show up above unfrozen cells */
     z-index: 1;
+    background-color: var(--rdg-header-background-color);
 
     /* Add box-shadow on the last frozen cell */
     &:nth-last-child(1 of &) {
@@ -299,7 +300,6 @@
 @layer rdg.Row {
   .rdg-7-0-0-beta-58-3c083f1b {
     display: contents;
-    background-color: var(--rdg-background-color);
   }
 }
 
@@ -307,7 +307,6 @@
   .rdg-7-0-0-beta-58-0dbd5994 {
     display: contents;
     background-color: var(--rdg-header-background-color);
-    font-weight: bold;
 
     & > .rdg-7-0-0-beta-58-85c48527 {
       /* Should have a higher value than 1 to show up above regular cells and the focus sink */
@@ -392,7 +391,6 @@
     content-visibility: auto;
     border: 1px solid var(--rdg-border-color);
     overflow: auto;
-    background-color: var(--rdg-background-color);
     color: var(--rdg-color);
     font-size: var(--rdg-font-size);
 
