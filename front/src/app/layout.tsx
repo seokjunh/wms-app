@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={cn("antialiased", pretendard.variable)} suppressHydrationWarning>
-      <body>
+      <body className="flex h-screen flex-col">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

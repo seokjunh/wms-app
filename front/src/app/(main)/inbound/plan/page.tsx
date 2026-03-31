@@ -1,4 +1,6 @@
+import InboundGrid from "@/components/InboundGrid";
+
 const page = () => {
-  return <div>page</div>;
+  return <InboundGrid />;
 };
 export default page;

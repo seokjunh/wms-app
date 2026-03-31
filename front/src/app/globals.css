@@ -7,12 +7,12 @@
 :root {
   --background: oklch(0.98 0 0);
   --foreground: oklch(0.28 0.04 260.33);
-  --card: oklch(1.00 0 0);
+  --card: oklch(1 0 0);
   --card-foreground: oklch(0.28 0.04 260.33);
-  --popover: oklch(1.00 0 0);
+  --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.28 0.04 260.33);
-  --primary: oklch(0.59 0.20 277.06);
-  --primary-foreground: oklch(1.00 0 0);
+  --primary: oklch(0.59 0.2 277.06);
+  --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.93 0.01 261.82);
   --secondary-foreground: oklch(0.37 0.03 259.73);
   --muted: oklch(0.97 0 0);
@@ -22,32 +22,45 @@
   --destructive: oklch(0.64 0.21 25.39);
   --border: oklch(0.87 0.01 261.81);
   --input: oklch(0.87 0.01 261.81);
-  --ring: oklch(0.59 0.20 277.06);
-  --chart-1: oklch(0.59 0.20 277.06);
+  --ring: oklch(0.59 0.2 277.06);
+  --chart-1: oklch(0.59 0.2 277.06);
   --chart-2: oklch(0.51 0.23 276.97);
   --chart-3: oklch(0.46 0.21 277.06);
-  --chart-4: oklch(0.40 0.18 277.16);
+  --chart-4: oklch(0.4 0.18 277.16);
   --chart-5: oklch(0.36 0.14 278.65);
   --sidebar: oklch(0.97 0 0);
   --sidebar-foreground: oklch(0.28 0.04 260.33);
-  --sidebar-primary: oklch(0.59 0.20 277.06);
-  --sidebar-primary-foreground: oklch(1.00 0 0);
+  --sidebar-primary: oklch(0.59 0.2 277.06);
+  --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.93 0.03 273.66);
   --sidebar-accent-foreground: oklch(0.37 0.03 259.73);
   --sidebar-border: oklch(0.87 0.01 261.81);
-  --sidebar-ring: oklch(0.59 0.20 277.06);
+  --sidebar-ring: oklch(0.59 0.2 277.06);
 
   --radius: 0.5rem;
-  
-  --shadow-2xs: 0px 4px 8px -1px oklch(0.00 0 0 / 0.05);
-  --shadow-xs: 0px 4px 8px -1px oklch(0.00 0 0 / 0.05);
-  --shadow-sm: 0px 4px 8px -1px oklch(0.00 0 0 / 0.10), 0px 1px 2px -2px oklch(0.00 0 0 / 0.10);
-  --shadow: 0px 4px 8px -1px oklch(0.00 0 0 / 0.10), 0px 1px 2px -2px oklch(0.00 0 0 / 0.10);
-  --shadow-md: 0px 4px 8px -1px oklch(0.00 0 0 / 0.10), 0px 2px 4px -2px oklch(0.00 0 0 / 0.10);
-  --shadow-lg: 0px 4px 8px -1px oklch(0.00 0 0 / 0.10), 0px 4px 6px -2px oklch(0.00 0 0 / 0.10);
-  --shadow-xl: 0px 4px 8px -1px oklch(0.00 0 0 / 0.10), 0px 8px 10px -2px oklch(0.00 0 0 / 0.10);
-  --shadow-2xl: 0px 4px 8px -1px oklch(0.00 0 0 / 0.25);
-  
+
+  --shadow-2xs: 0px 4px 8px -1px oklch(0 0 0 / 0.05);
+  --shadow-xs: 0px 4px 8px -1px oklch(0 0 0 / 0.05);
+  --shadow-sm: 0px 4px 8px -1px oklch(0 0 0 / 0.1), 0px 1px 2px -2px oklch(0 0 0 / 0.1);
+  --shadow: 0px 4px 8px -1px oklch(0 0 0 / 0.1), 0px 1px 2px -2px oklch(0 0 0 / 0.1);
+  --shadow-md: 0px 4px 8px -1px oklch(0 0 0 / 0.1), 0px 2px 4px -2px oklch(0 0 0 / 0.1);
+  --shadow-lg: 0px 4px 8px -1px oklch(0 0 0 / 0.1), 0px 4px 6px -2px oklch(0 0 0 / 0.1);
+  --shadow-xl: 0px 4px 8px -1px oklch(0 0 0 / 0.1), 0px 8px 10px -2px oklch(0 0 0 / 0.1);
+  --shadow-2xl: 0px 4px 8px -1px oklch(0 0 0 / 0.25);
+
+  --rdg-selection-width: 2px;
+  --rdg-selection-color: oklch(0.68 0.16 276.93);
+  --rdg-font-size: 14px;
+  --rdg-cell-frozen-box-shadow: 2px 0 5px -2px rgba(136, 136, 136, 0.3);
+  --rdg-border-width: 1px;
+  --rdg-summary-border-width: calc(var(--rdg-border-width) * 2);
+  --rdg-color: var(--foreground);
+  --rdg-border-color: var(--border);
+  --rdg-header-background-color: var(--backgroud);
+  --rdg-header-draggable-background-color: oklch(92.797% 0.00011 271.152);
+  --rdg-row-hover-background-color: oklch(97.015% 0.00011 271.152);
+  --rdg-row-selected-background-color: oklch(0.68 0.16 276.93);
+  --rdg-row-selected-hover-background-color: oklch(0.68 0.16 276.93);
 }
 
 .dark {
@@ -70,10 +83,10 @@
   --input: oklch(0.45 0.03 257.68);
   --ring: oklch(0.68 0.16 276.93);
   --chart-1: oklch(0.68 0.16 276.93);
-  --chart-2: oklch(0.59 0.20 277.06);
+  --chart-2: oklch(0.59 0.2 277.06);
   --chart-3: oklch(0.51 0.23 276.97);
   --chart-4: oklch(0.46 0.21 277.06);
-  --chart-5: oklch(0.40 0.18 277.16);
+  --chart-5: oklch(0.4 0.18 277.16);
   --sidebar: oklch(0.28 0.04 260.33);
   --sidebar-foreground: oklch(0.93 0.01 256.71);
   --sidebar-primary: oklch(0.68 0.16 276.93);
@@ -82,15 +95,21 @@
   --sidebar-accent-foreground: oklch(0.87 0.01 261.81);
   --sidebar-border: oklch(0.45 0.03 257.68);
   --sidebar-ring: oklch(0.68 0.16 276.93);
-  
-  --shadow-2xs: 0 1px 3px 0px oklch(0.00 0 0 / 0.05);
-  --shadow-xs: 0 1px 3px 0px oklch(0.00 0 0 / 0.05);
-  --shadow-sm: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 1px 2px -1px oklch(0.00 0 0 / 0.10);
-  --shadow: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 1px 2px -1px oklch(0.00 0 0 / 0.10);
-  --shadow-md: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 2px 4px -1px oklch(0.00 0 0 / 0.10);
-  --shadow-lg: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 4px 6px -1px oklch(0.00 0 0 / 0.10);
-  --shadow-xl: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 8px 10px -1px oklch(0.00 0 0 / 0.10);
-  --shadow-2xl: 0 1px 3px 0px oklch(0.00 0 0 / 0.25);
+
+  --shadow-2xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow-md: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 2px 4px -1px oklch(0 0 0 / 0.1);
+  --shadow-lg: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 4px 6px -1px oklch(0 0 0 / 0.1);
+  --shadow-xl: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 8px 10px -1px oklch(0 0 0 / 0.1);
+  --shadow-2xl: 0 1px 3px 0px oklch(0 0 0 / 0.25);
+
+  --rdg-header-background-color: var(--background);
+  --rdg-header-draggable-background-color: oklch(29.716% 0.00003 271.152);
+  --rdg-row-hover-background-color: oklch(20.463% 0.00002 271.152);
+  --rdg-row-selected-background-color: oklch(0.68 0.16 276.93);
+  --rdg-row-selected-hover-background-color: oklch(0.68 0.16 276.93);
 }
 
 @theme inline {
@@ -143,15 +162,235 @@
   --shadow-2xl: var(--shadow-2xl);
 }
 
+@layer rdg {
+  @layer Defaults,
+    FocusSink,
+    Cell,
+    HeaderCell,
+    SummaryCell,
+    EditCell,
+    Row,
+    HeaderRow,
+    SummaryRow,
+    GroupedRow,
+    Root;
+}
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+@layer rdg.Defaults {
+  .rdg-7-0-0-beta-58-ccd2e5d9 {
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
   }
-  body {
-    @apply bg-background text-foreground;
+}
+
+@layer rdg.FocusSink {
+  .rdg-7-0-0-beta-58-3fe773c3 {
+    outline: 2px solid var(--rdg-selection-color);
+    outline-offset: -2px;
   }
-  html {
-    @apply font-sans;
+  .rdg-7-0-0-beta-58-97ce3fde {
+    &::before {
+      content: "";
+      display: inline-block;
+      block-size: 100%;
+      position: sticky;
+      inset-inline-start: 0;
+      border-inline-start: 2px solid var(--rdg-selection-color);
+    }
+  }
+
+  .rdg-7-0-0-beta-58-dbb8b3c5 {
+    grid-column: 1 / -1;
+    pointer-events: none;
+    /* Should have a higher value than 1 to show up above regular frozen cells */
+    z-index: 1;
+  }
+
+  .rdg-7-0-0-beta-58-e9f55541 {
+    /* Should have a higher value than 3 to show up above header and summary rows */
+    z-index: 3;
+  }
+}
+
+@layer rdg.Cell {
+  .rdg-7-0-0-beta-58-85c48527 {
+    position: relative;
+    padding-block: 0;
+    padding-inline: 8px;
+    border-inline-end: var(--rdg-border-width) solid var(--rdg-border-color);
+    border-block-end: var(--rdg-border-width) solid var(--rdg-border-color);
+    grid-row-start: var(--rdg-grid-row-start);
+    align-content: center;
+    background-color: inherit;
+    white-space: nowrap;
+    overflow: clip;
+    text-overflow: ellipsis;
+    outline: none;
+
+    &[aria-selected="true"] {
+      outline: var(--rdg-selection-width) solid var(--rdg-selection-color);
+      outline-offset: calc(var(--rdg-selection-width) * -1);
+    }
+  }
+
+  .rdg-7-0-0-beta-58-17a9a6d4 {
+    position: sticky;
+    /* Should have a higher value than 0 to show up above unfrozen cells */
+    z-index: 1;
+
+    /* Add box-shadow on the last frozen cell */
+    &:nth-last-child(1 of &) {
+      box-shadow: var(--rdg-cell-frozen-box-shadow);
+    }
+  }
+
+  .rdg-7-0-0-beta-58-35ccb4c8 {
+    background-color: #ccccff;
+  }
+}
+
+@layer rdg.HeaderCell {
+  .rdg-7-0-0-beta-58-1893dc0f {
+    touch-action: none;
+  }
+
+  .rdg-7-0-0-beta-58-4e60db91 {
+    cursor: col-resize;
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    inline-size: 10px;
+  }
+
+  .rdg-7-0-0-beta-58-3e1a4ad4 {
+    background-color: var(--rdg-header-draggable-background-color);
+  }
+
+  .rdg-7-0-0-beta-58-51abd8b8 {
+    background-color: var(--rdg-header-draggable-background-color);
+  }
+
+  .rdg-7-0-0-beta-58-c8d7aa64 {
+    border-radius: 4px;
+    width: fit-content;
+    outline: 2px solid hsl(207, 100%, 50%);
+    outline-offset: -2px;
+  }
+}
+
+@layer rdg.SummaryCell {
+  .rdg-7-0-0-beta-58-d907aa87 {
+    inset-block-start: var(--rdg-summary-row-top);
+    inset-block-end: var(--rdg-summary-row-bottom);
+  }
+}
+
+@layer rdg.EditCell {
+  .rdg-7-0-0-beta-58-46f9ea88 {
+    padding: 0;
+  }
+}
+
+@layer rdg.Row {
+  .rdg-7-0-0-beta-58-3c083f1b {
+    display: contents;
+    background-color: var(--rdg-background-color);
+  }
+}
+
+@layer rdg.HeaderRow {
+  .rdg-7-0-0-beta-58-0dbd5994 {
+    display: contents;
+    background-color: var(--rdg-header-background-color);
+    font-weight: bold;
+
+    & > .rdg-7-0-0-beta-58-85c48527 {
+      /* Should have a higher value than 1 to show up above regular cells and the focus sink */
+      z-index: 2;
+      position: sticky;
+    }
+
+    & > .rdg-7-0-0-beta-58-17a9a6d4 {
+      z-index: 3;
+    }
+  }
+}
+
+@layer rdg.SummaryRow {
+  .rdg-7-0-0-beta-58-0b90c82c {
+    > .rdg-7-0-0-beta-58-85c48527 {
+      position: sticky;
+    }
+  }
+
+  .rdg-7-0-0-beta-58-d0520eab {
+    > .rdg-7-0-0-beta-58-85c48527 {
+      z-index: 2;
+    }
+
+    > .rdg-7-0-0-beta-58-17a9a6d4 {
+      z-index: 3;
+    }
+  }
+}
+
+@layer rdg.GroupedRow {
+  .rdg-7-0-0-beta-58-e74a2be3 {
+    &:not([aria-selected="true"]) {
+      background-color: var(--rdg-header-background-color);
+    }
+
+    > .rdg-7-0-0-beta-58-85c48527:not(:last-child, .rdg-7-0-0-beta-58-17a9a6d4),
+    > :nth-last-child(n + 2 of .rdg-7-0-0-beta-58-17a9a6d4) {
+      border-inline-end: none;
+    }
+  }
+}
+
+@layer rdg.Root {
+  .rdg-7-0-0-beta-58-ccd2e5d9 {
+    display: grid;
+    accent-color: var(--accent);
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context */
+    /* We set a stacking context so internal elements don't render on top of external elements. */
+    /* size containment is not used as it could break "width: min-content" for example, and the grid would infinitely resize on Chromium browsers */
+    contain: content;
+    content-visibility: auto;
+    border: 1px solid var(--rdg-border-color);
+    overflow: auto;
+    background-color: var(--rdg-background-color);
+    color: var(--rdg-color);
+    font-size: var(--rdg-font-size);
+
+    /* needed on Firefox to fix scrollbars */
+    &::before {
+      content: "";
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+    }
+
+    > :nth-last-child(1 of .rdg-top-summary-row) {
+      > .rdg-7-0-0-beta-58-85c48527 {
+        border-block-end: var(--rdg-summary-border-width) solid var(--rdg-summary-border-color);
+      }
+    }
+
+    > :nth-child(1 of .rdg-bottom-summary-row) {
+      > .rdg-7-0-0-beta-58-85c48527 {
+        border-block-start: var(--rdg-summary-border-width) solid var(--rdg-summary-border-color);
+      }
+    }
+  }
+
+  .rdg-7-0-0-beta-58-e9b0e1c9 {
+    user-select: none;
+
+    & .rdg-7-0-0-beta-58-3c083f1b {
+      cursor: move;
+    }
   }
 }
