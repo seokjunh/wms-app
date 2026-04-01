@@ -5,28 +5,28 @@ const jwtRefreshSecret = new TextEncoder().encode(process.env.JWT_REFRESH_SECRET
 const publicRoutes = ["/sign-in"];
 
 export async function proxy(req: NextRequest) {
-  const { pathname } = req.nextUrl;
-  const refreshToken = req.cookies.get("refreshToken")?.value;
-  const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route));
+  // const { pathname } = req.nextUrl;
+  // const refreshToken = req.cookies.get("refreshToken")?.value;
+  // const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route));
 
-  if (!refreshToken) {
-    if (isPublicRoute) return NextResponse.next();
-    return NextResponse.redirect(new URL("/sign-in", req.url));
-  }
+  // if (!refreshToken) {
+  //   if (isPublicRoute) return NextResponse.next();
+  //   return NextResponse.redirect(new URL("/sign-in", req.url));
+  // }
 
-  try {
-    await jwtVerify(refreshToken, jwtRefreshSecret);
+  // try {
+  //   await jwtVerify(refreshToken, jwtRefreshSecret);
 
-    if (isPublicRoute) return NextResponse.redirect(new URL("/", req.url));
+  //   if (isPublicRoute) return NextResponse.redirect(new URL("/", req.url));
 
-    return NextResponse.next();
-  } catch (error) {
-    console.log("Refresh Token 검증 실패:", error);
+  //   return NextResponse.next();
+  // } catch (error) {
+  //   console.log("Refresh Token 검증 실패:", error);
 
-    const res = NextResponse.redirect(new URL("/sign-in", req.url));
-    res.cookies.delete("refreshToken");
-    return res;
-  }
+  //   const res = NextResponse.redirect(new URL("/sign-in", req.url));
+  //   res.cookies.delete("refreshToken");
+  //   return res;
+  // }
 }
 
 export const config = {
