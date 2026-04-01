@@ -25,7 +25,11 @@ const ThemeToggle = () => {
   }, [toggleTheme]);
 
   return (
-    <Button variant="ghost" size="icon" onClick={toggleTheme}>
+    <Button
+      variant="ghost"
+      onClick={toggleTheme}
+      className="hover:bg-accent aria-expanded:bg-accent dark:hover:bg-accent/50"
+    >
       <Sun className="scale-100 transition-all dark:scale-0" />
       <Moon className="absolute scale-0 transition-all dark:scale-100" />
       <span className="sr-only">Toggle theme</span>

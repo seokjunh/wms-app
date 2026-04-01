@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
-import { ThemeProvider } from "next-themes";
-import AuthProvider from "@/components/AuthProvider";
 import { cn } from "@/lib/utils";
+import AuthProvider from "@/providers/AuthProvider";
+import ThemeProvider from "@/providers/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Nexumm LX",

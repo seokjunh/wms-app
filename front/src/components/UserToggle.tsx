@@ -32,7 +32,10 @@ const UserToggle = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
+        <Button
+          variant="ghost"
+          className="hover:bg-accent aria-expanded:bg-accent dark:hover:bg-accent/50"
+        >
           <User />
           <span className="sr-only">User Profile</span>
         </Button>
