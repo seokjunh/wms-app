@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, Command } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { menu } from "@/lib/menu";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
@@ -25,13 +25,7 @@ const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Command className="size-4" />
-                </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">RHISLTE</span>
-                  <span className="truncate text-xs">Nexumm LX</span>
-                </div>
+                <span className="font-bold text-3xl">Nexumm LX</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -78,9 +72,7 @@ const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
                         {item.items?.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.title}>
                             <SidebarMenuSubButton asChild>
-                              <Link href={subItem.url}>
-                                <span>{subItem.title}</span>
-                              </Link>
+                              <Link href={subItem.url}>{subItem.title}</Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
                         ))}

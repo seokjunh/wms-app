@@ -40,7 +40,7 @@ const UserToggle = () => {
           <span className="sr-only">User Profile</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent align="end">
         <DropdownMenuGroup>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuItem>Profile</DropdownMenuItem>

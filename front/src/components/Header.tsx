@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { getBreadcrumbItems } from "@/lib/menu";
+import NotificationToggle from "./NotificationToggle";
 import ThemeToggle from "./ThemeToggle";
 import UserToggle from "./UserToggle";
 import {
@@ -19,9 +20,9 @@ const Header = () => {
   const crumbs = getBreadcrumbItems(pathname);
 
   return (
-    <header className="flex h-16 shrink-0 items-center justify-between px-4">
+    <header className="flex shrink-0 items-center justify-between">
       <div className="flex items-center gap-2">
-        <SidebarTrigger />
+        <SidebarTrigger size="default" />
         <Breadcrumb>
           <BreadcrumbList>
             {crumbs.map((crumb, index) => {
@@ -33,9 +34,7 @@ const Header = () => {
                     {isLast ? (
                       <BreadcrumbPage>{crumb.title}</BreadcrumbPage>
                     ) : (
-                      <BreadcrumbLink href={crumb.url}>
-                        {crumb.title}
-                      </BreadcrumbLink>
+                      <BreadcrumbLink href={crumb.url}>{crumb.title}</BreadcrumbLink>
                     )}
                   </BreadcrumbItem>
                   {!isLast && <BreadcrumbSeparator />}
@@ -46,8 +45,9 @@ const Header = () => {
         </Breadcrumb>
       </div>
       <div>
-        <ThemeToggle />
+        <NotificationToggle />
         <UserToggle />
+        <ThemeToggle />
       </div>
     </header>
   );

@@ -13,15 +13,13 @@ import {
 } from "react-data-grid";
 import { flushSync } from "react-dom";
 import { exportToCsv } from "@/lib/grid";
+import type { Row } from "@/types/grid";
 import { Button } from "./ui/button";
-
-type Row = Record<string, number | string>;
 
 const columns = [
   SelectColumn,
   ...Array.from({ length: 26 }, (_, i) => {
     const key = String.fromCharCode(65 + i);
-
     return { key, name: key, renderEditCell: renderTextEditor };
   }),
 ];
@@ -140,28 +138,39 @@ const InboundGrid = () => {
 
   return (
     <>
-      <div className="flex justify-end gap-2">
-        <Button variant="outline" onClick={() => fileInputRef.current?.click()}>
-          <Upload /> CSV로 가져오기
-        </Button>
+      <div className="flex items-center justify-between">
+        <div>
+          {selectedRows.size > 0 && (
+            <p className="flex items-center gap-1.5">
+              <span className="text-muted-foreground">전체 {rows.length}행 중</span>
+              <span className="font-bold text-primary">{selectedRows.size}행</span>
+              <span className="text-muted-foreground">선택됨</span>
+            </p>
+          )}
+        </div>
+        <div className="flex justify-center gap-2">
+          <Button variant="outline" onClick={() => fileInputRef.current?.click()}>
+            <Upload /> CSV 가져오기
+          </Button>
 
-        <input
-          type="file"
-          ref={fileInputRef}
-          onChange={handleImportToCsv}
-          accept=".csv"
-          className="hidden"
-        />
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleImportToCsv}
+            accept=".csv"
+            className="hidden"
+          />
 
-        <Button variant="outline" onClick={handleExportToCsv}>
-          <Download /> CSV로 내보내기
-        </Button>
+          <Button variant="outline" onClick={handleExportToCsv}>
+            <Download /> CSV 내보내기
+          </Button>
+        </div>
       </div>
 
       <DataGrid
         ref={gridRef}
         rowKeyGetter={(row) => row.id}
-        rowHeight={30}
+        rowHeight={25}
         columns={columns}
         rows={rows}
         selectedRows={selectedRows}

@@ -11,10 +11,10 @@ export default function MainLayout({
   return (
     <TooltipProvider>
       <SidebarProvider>
-        <AppSidebar />
-        <SidebarInset className="flex min-w-0 flex-col">
+        <AppSidebar/>
+        <SidebarInset className="flex min-w-0 flex-col gap-2 p-4">
           <Header />
-          <div className="flex min-h-0 flex-1 flex-col gap-4 px-6 pb-6">{children}</div>
+          <div className="flex min-h-0 flex-1 flex-col gap-4 px-2 py-2">{children}</div>
         </SidebarInset>
       </SidebarProvider>
     </TooltipProvider>

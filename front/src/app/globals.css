@@ -68,11 +68,13 @@
   --border: oklch(0.45 0.03 257.68);
   --input: oklch(0.45 0.03 257.68);
   --ring: oklch(0.68 0.16 276.93);
+
   --chart-1: oklch(0.68 0.16 276.93);
   --chart-2: oklch(0.59 0.2 277.06);
   --chart-3: oklch(0.51 0.23 276.97);
   --chart-4: oklch(0.46 0.21 277.06);
   --chart-5: oklch(0.4 0.18 277.16);
+
   --sidebar: oklch(0.28 0.04 260.33);
   --sidebar-foreground: oklch(0.93 0.01 256.71);
   --sidebar-primary: oklch(0.68 0.16 276.93);
@@ -236,17 +238,8 @@
   .rdg-7-0-0-beta-58-3b807ead {
     display: block;
     margin: auto;
-    inline-size: 20px;
-    block-size: 20px;
-
-    &:focus-visible {
-      outline: 2px solid var(--rdg-checkbox-focus-color);
-      outline-offset: -3px;
-    }
-
-    &:enabled {
-      cursor: pointer;
-    }
+    inline-size: 15px;
+    block-size: 15px;
   }
 }
 
@@ -266,6 +259,7 @@
   .rdg-7-0-0-beta-58-0dbd5994 {
     display: contents;
     background-color: var(--rdg-header-background-color);
+    user-select: none;
 
     & > .rdg-7-0-0-beta-58-85c48527 {
       /* Should have a higher value than 1 to show up above regular cells and the focus sink */
@@ -291,9 +285,11 @@
 @layer rdg.HeaderCell {
   .rdg-7-0-0-beta-58-1893dc0f {
     touch-action: none;
+    
 
     &[aria-selected="true"] {
       outline: none;
+      background-color: var(--accent);
     }
   }
 }
@@ -322,6 +318,7 @@
   .rdg-7-0-0-beta-58-3c083f1b {
     display: contents;
     background-color: var(--rdg-background-color);
+    
 
     &:hover {
       background-color: var(--rdg-row-hover-background-color);
@@ -396,7 +393,6 @@
     background-color: var(--rdg-background-color);
     color: var(--rdg-color);
     font-size: var(--rdg-font-size);
-    user-select: none;
 
     /* needed on Firefox to fix scrollbars */
     &::before {
@@ -436,7 +432,6 @@
 @layer rdg.TextEditor {
   .rdg-7-0-0-beta-58-2f8db206 {
     appearance: none;
-
     box-sizing: border-box;
     inline-size: 100%;
     block-size: 100%;
@@ -444,20 +439,10 @@
     padding-inline: 6px;
     border: 2px solid #ccc;
     vertical-align: top;
-    color: var(--rdg-color);
-    background-color: var(--rdg-background-color);
-
-    font-family: inherit;
-    font-size: var(--rdg-font-size);
 
     &:focus {
       border-color: var(--rdg-selection-color);
       outline: none;
-    }
-
-    &::placeholder {
-      color: #999;
-      opacity: 1;
     }
   }
 }
