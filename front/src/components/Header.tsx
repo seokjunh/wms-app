@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { getBreadcrumbItems } from "@/lib/menu";
+import { getBreadcrumbItems } from "@/lib/navigation";
 import NotificationToggle from "./NotificationToggle";
 import ThemeToggle from "./ThemeToggle";
 import UserToggle from "./UserToggle";
